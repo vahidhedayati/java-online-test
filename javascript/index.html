@@ -1,0 +1,571 @@
+<html>
+
+<body>
+  Use console to see what goes on
+
+  <pre>
+
+    i've been in multiples node.js/javascript interviews this year, my top 10 questions are:
+    1. What is the difference btw let and var?
+    Variables declared by var keyword are scoped to the immediate function body (hence the function scope) while let
+    variables are scoped to the immediate enclosing block denoted by { }
+
+
+
+    2. What is prototype in javascript?
+
+    Prototypes allow you to easily define methods to all instances of a particular object. ... The beauty is that the method
+    is applied to the prototype, so it is only stored in the memory once, but every instance of the object has access to it.
+
+
+    3. What is a closure?
+
+    A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the
+    lexical environment). In other words, a closure gives you access to an outer function's scope from an inner function.
+
+    function init() {
+    var name = 'Mozilla'; // name is a local variable created by init
+    function displayName() { // displayName() is the inner function, a closure
+    alert(name); // use variable declared in the parent function
+    }
+    displayName();
+    }
+    init();
+
+
+
+    4. Explain the event loop in node.js?
+The event loop is what allows Node. js to perform non-blocking I/O operations — despite the fact that JavaScript is
+single-threaded — by offloading operations to the system kernel whenever possible. Since most modern kernels are
+multi-threaded, they can handle multiple operations executing in the background.
+
+
+
+
+
+    5. What is the meaning of the keyword this in javascript?
+
+    “This” keyword refers to an object that is executing the current piece of code. It references the object that is
+    executing the current function. If the function being referenced is a regular function, “this” references the global
+    object.
+
+
+    6. What is node.js?
+
+
+    Node. js is primarily used for non-blocking, event-driven servers, due to its single-threaded nature. It's used for
+    traditional web sites and back-end API services, but was designed with real-time, push-based architectures in mind.
+
+    
+
+    7. What is the difference btw null and undefined?
+
+
+    Null means an empty or non-existent value. Null is assigned, and explicitly means nothing.
+    var test1 = null;
+    console.log(test1);
+    // null
+    null is also an object. Interestingly, this was actually an error in the original JavaScript implementation:
+    console.log(typeof test1);
+    // object
+    Undefined
+    Undefined means a variable has been declared, but the value of that variable has not yet been defined. For example:
+    var test2;
+    console.log(test2);
+    // undefined
+    Unlike null, undefined is of the type undefined:
+
+
+
+
+    8. Explain settimeout in javascript?
+    The setTimeout function is a native JavaScript function. It sets a timer (a countdown set in milliseconds) for an
+    execution of a callback function, calling the function upon completion of the timer.
+
+
+    9. What is the difference btw javascript and node.js?
+
+    Javascript NodeJS
+    1.
+    Javascript is a programming language that is used for writing scripts on the website.    NodeJS is a Javascript runtime environment.
+    2. Javascript can only be run in the browsers.                                           We can run Javascript outside the browser with the help of NodeJS.
+    3. It is basically used on the client-side.                                            It is mostly used on the server-side.
+    4. Javascript is capable enough to add HTML and play with the DOM                      Nodejs does not have capability to add HTML tags.
+    5. Javascript can run in any browser engine as like JS core in safari and Spidermonkey in Firefox.         V8 is the Javascript engine inside of node.js that parses and runs Javascript.
+    6. Javascript is used in frontend development.                                                       Nodejs is used in server-side development.
+    7. Some of the javascript frameworks are RamdaJS, TypedJS, etc.                        Some of the Nodejs modules are Lodash, express etc. These modules are to be imported from npm.
+    
+    8. It is the upgraded version of ECMA script that uses Chrome’s V8 engine written in C++                   Nodejs is written in C, C++ and Javascript.
+
+
+
+
+    10. Explain what is promise and what is a callback?
+    The promise constructor takes one argument, a callback with two parameters, resolve and reject. Do something within the
+    callback, perhaps async, then call resolve if everything worked, otherwise call reject. Like throw in plain old
+    JavaScript, it's customary, but not required, to reject with an Error object
+
+
+  </pre>
+  <script>
+
+    let numbers = [1, 2, 4, -5, 1, 3]
+    let myCollected = [];
+
+    for (let i = 0; i < numbers.length; i++) {
+      let current = Number(numbers[i]);
+      if (current >= 0 && myCollected.indexOf(current) == -1) {
+        myCollected.push(current);
+      }
+    }
+    console.log(" -- numbers " + numbers.length + " = " + myCollected.length)
+
+
+    const mySet = new Set();
+    mySet.add({ name: 'dd' });
+
+    const setArr = Array.from(mySet)
+    setArr[0].name = "dada";
+
+    for (const value of mySet.values()) {
+      console.log(value.name)
+    }
+
+    for (const value of setArr.values()) {
+      console.log(value)
+    }
+
+    console.log(reverseString('APPPLE'));
+
+    function reverseString(str) {
+      // return str.split("").reverse().join("").toLowerCase();
+      return Array.from(str.split("").reverse()).forEach(function (f) { f.toLowerCase() + " " }) //.join("");
+    }
+
+
+    const maxChar = (str) => {
+      let obj = {};
+      for (let char of str) {
+        if (obj[char]) {
+          obj[char]++
+        } else {
+          obj[char] = 1;
+        }
+      }
+      console.log(obj)
+    }
+
+    maxChar("heLLop$$")
+
+
+
+    const fizzbuzz = (num) => {
+      for (let i = 1; i <= num; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+          console.log(i + " fizzBuzz");
+        } else if (i % 3 === 0) {
+          console.log(i + " fizz");
+        } else if (i % 5 === 0) {
+          console.log(i + " buzz");
+        } //else {
+        //console.log("")
+        //}
+      }
+    }
+    fizzbuzz(17);
+
+    const chunks = ((arr, n) => {
+
+      const chunked = [];
+      for (let elem of arr) {
+        let last = chunked[chunked.length - 1];
+        if (!last || last.length) {
+          chunked.push([elem])
+        } else {
+          last.push(elem)
+        }
+      }
+      return chunked;
+    })([1, 4, 13, 3, 2, 6, -9, 0], 4)
+
+    console.log(JSON.stringify(chunks))
+
+    function chunk(arr, chunksize) {
+      len = arr.length;
+      let r = [];
+      for (var i = 0; i < len; i += chunksize)
+        r.push(arr.slice(i, i + chunksize));
+      return r;
+    }
+
+
+    function checkUnique(str) {
+      let set = new Set(str);
+      console.log(set)
+      if (set.size === str.length) return true;
+      return false;
+    }
+
+    console.log('000' + checkUnique('abcd'));
+
+
+    const isStringPermutation = (str1, str2) => {
+      let temp1 = str1.split("").sort().join("");
+      let temp2 = str2.split("").sort().join("");
+      return temp1 === temp2;
+    }
+    console.log('000' + isStringPermutation('abcd', 'dcba'));
+
+    const isUrlify = (str, no) => {
+
+      // console.log(str)
+      let newstr = str.trim()
+      // console.log(newstr)
+
+      let result = newstr.replace(/ /g, '%20') //this is global we can use this to replace all the places that we want to with the value we want
+      console.log(result)
+    }
+
+    isUrlify('hello there')
+
+
+    function binaryGap(n) {
+      let binaryN = n.toString(2);
+      console.log("binary value of n: ", binaryN);
+      var largestGap = 0;
+      var largestSoFar = 0;
+      for (let i = 0; i <= binaryN.length - 1; i++) {
+        if (binaryN[i] != "0") {
+          if (largestGap > largestSoFar) {
+            largestSoFar = largestGap;
+            largestGap = 0;
+          }
+        } else {
+          largestGap++;
+        }
+      }
+      return largestSoFar;
+    }
+
+
+    let a = binaryGap(3339)
+    console.log(' gap =' + a)
+
+
+    var myArray = ['a', 'b', 'c'];
+
+    //This mutuates original aray does not change reference 
+    myArray.push('end of array');
+    myArray.unshift('start of array')
+    console.log(myArray)
+
+    //creates a new array and assigns original array with new referecnce
+    myArray = ['some start', ...myArray, 'my new end']
+    console.log(myArray)
+
+
+    //using a const we can see 2nd method needs a new array definition we can't overwrite myarray2 
+
+    const myArray2 = ['a', 'b', 'c'];
+
+    //This mutuates original aray does not change reference 
+    myArray2.push('end of array');
+    myArray2.unshift('start of array')
+    console.log(myArray2)
+
+    //creates a new array and assigns original array with new referecnce
+    //cant do this
+    const myArray3 = ['some start', ...myArray2, 'my new end']
+    console.log(myArray3)
+
+
+
+    function secretStuff() {
+      var secret = "osmething";
+      return function () {
+        return secret;
+      }
+    }
+
+    var getSecret = secretStuff();
+
+    console.log(getSecret() + ' vs ' + secretStuff())
+
+
+
+
+    var num = 4;
+    function outer() {
+      var num = 2;
+      function inner() {
+        num++
+        var num = 3;
+        console.log(num)
+      }
+      inner();
+
+    }
+    outer();
+
+    console.log(typeof typeof 9)//
+    console.log(typeof (typeof 9))// number returned will then be a string
+
+
+
+    var hero = {
+      _name: "Billy ",
+      getSecretIdentity: function () {
+        return this._name;
+      }
+    }
+
+    var anotherHero = {
+      _name: 'Bob'
+    }
+
+
+    //The this keyword is bound to internal object
+    var getId = hero.getSecretIdentity()
+    console.log(" Calling getSecretIdentity function  " + getId)
+
+
+    //This is a reference to the function
+    const getReference = hero.getSecretIdentity
+    //getReference constant  will return the actual function as it is written by developer
+    console.log(getReference)
+
+    //This will return undefined because the this has not been defined 
+    console.log(" undefined: " + getReference())
+
+
+    // To demonstrate we will set bind to another Hero
+    var getId2 = hero.getSecretIdentity.bind(anotherHero);
+    console.log(" -> getScretIdentity this is now anotherHero and name comes from there: " + getId2())
+
+
+
+    console.log(" No assignments and works ->" + hero.getSecretIdentity())
+
+
+
+    function maxCounter(N, A) {
+
+      let counters = new Array(N).fill(0);
+
+      //var counters = new Array (N);
+      //for (j = 0; j < N; j++){
+      // counters[j] = 0;
+      //}
+
+
+      let maxCounter = 0;
+
+      let maxToSet = 0;
+
+      for (let i = 0; i < A.length; i++) {
+        let X = A[i] - 1;
+        console.log(" X " + X + " N " + N);
+        if (X === N) {
+          // lazy update all counters
+          maxToSet = maxCounter;
+        } else if (0 <= X && X < N) {
+          // see if we needed to set it to maxToSet but havent yet
+          counters[X] = Math.max(counters[X] + 1, maxToSet + 1);
+
+          maxCounter = Math.max(counters[X], maxCounter);
+        }
+      }
+
+      // update any counters to maxToSet that we havent yet
+      counters = counters.map((val) => Math.max(val, maxToSet));
+      return counters;
+
+    }
+
+    function maxCounter2(N, A) {
+
+      let counters = new Array(N).fill(0);
+      let minValue = 0;
+      let maxValue = 0;
+      for (let i = 0; i < A.length; i++) {
+        let current = A[i];
+        if (current >= N + 1) {
+          minValue = maxValue;
+        } else {
+          //console.log('i ' + i + ' Current = ' + current + ' ')
+          current--;
+          //'//' console.log('run2 i ' + i + ' Current = ' + c + ' ' + current)
+          counters[current] = Math.max(counters[current] + 1, minValue + 1);
+          maxValue = Math.max(maxValue, counters[current]);
+        }
+      }
+
+      for (let i = 0; i < counters.length; i++) {
+        counters[i] = Math.max(counters[i], minValue);
+      }
+      return counters;
+    }
+
+    ///console.log(maxCounter(4, [1, 1, 3, 4, 0, 5, 2, 3, 5, 7,]));
+    console.log(maxCounter2(4, [3, 4, 4, 6, 1, 4, 4]));
+    console.log(maxCounter(4, [3, 4, 4, 5, 1, 4, 4]));
+
+
+
+    function rotateLeft(arr, rotations) {
+      //copy array
+      const rotatedArray = arr.concat();
+
+      if (rotations > 0 && rotations < rotatedArray.length) {
+        //go through iteration from 0 to end of rotated value
+        for (let i = 0; i < rotations; i++) {
+          const frontItem = rotatedArray.shift()
+          rotatedArray.push(frontItem);
+        }
+      }
+
+
+      return rotatedArray;
+    }
+
+    function rotateLeft2(arr, d) {
+      return arr.slice(d).concat(arr.slice(0, d))
+    }
+
+
+    function appendToArray() {
+      const array1 = ['a', 'b', 'c'];
+      const array2 = ['d', 'e', 'f'];
+      const array3 = array1.concat(array2);
+
+      console.log(array3);
+      // expected output: Array ["a", "b", "c", "d", "e", "f"]
+
+    }
+
+
+    function shiftPushPopUnshift() {
+
+      const cats = ['Bob', 'Willy', 'Mini'];
+
+      //This removes last element returnng value
+      const mini = cats.pop();  // ['Bob', 'Willy'];
+
+
+      //This pushes the same item back to end of array
+      cats.push(mini)  // ['Bob', 'Willy', 'Mini'];
+
+      //This removes the first element of array
+      const bob = cats.shift();  // ['Willy', 'Mini'];
+
+      //This pushes the same item back to end of array
+      cats.unshift(bob);  // ['Bob', 'Willy', 'Mini'];
+
+      cats.unshift('test1', 'test2'); // ['test1', 'test2', 'Bob', 'Willy', 'Mini'];
+
+
+
+    }
+    console.log(rotateLeft([1, 2, 3, 4], 1))
+    console.log(rotateLeft2([1, 2, 3, 4], 1))
+
+    function duplicateValues() {
+      let a = [1, 2, 1, 3]
+      let mySet = new Set();
+      for (let i = 0; i < a.length; i++) {
+        if (!mySet.has(a[i])) {
+          mySet.add(a[i])
+        } else {
+          console.log('already done ' + a[i])
+        }
+
+      }
+
+      console.log(mySet.size)
+    }
+    duplicateValues();
+
+
+    function dupValues() {
+      let a = [1, 2, 1, 3]
+      /// spread operator
+      let b = [... new Set(a)]
+      console.log(b)
+
+    }
+    dupValues();
+
+    const person = {
+      name: 'apple',
+
+      walk() {
+        // this is a reference ot current object
+        console.log(this)
+      },
+      talk() { console.log('ahha') }
+    }
+
+    person.talk()
+    person.walk.bind(person)
+    const target = 'name';
+    person[target.value] = 'Ben'
+
+    console.log(person)
+
+
+    let obj1 = {
+      name: '1'
+    }
+    let obj2 = {
+      id: '1'
+    }
+
+    let vba = { ...obj1, ...obj2, location: 'A' }
+
+
+    class Person {
+
+      constructor(name) {
+        this.name = name;
+      }
+
+      walk() {
+        console.log('aa')
+      }
+
+    }
+
+    const p1 = new Person("jj");
+
+    class Teacher extends Person {
+      constructor(name, degree) {
+        super(name);
+        this.degree = degree;
+      }
+      teach() {
+        console.log('teaching ')
+      }
+    }
+
+
+
+    function User(name, email) {
+      this.email = email;
+      this.name = name;
+      this.login = function () {
+        console.log(this.email + " has logged in")
+      }
+    }
+
+    User.prototype.logon = function () {
+      console.log(this.name + " ahh")
+    }
+
+    let userA = new User('apple', 'a@a')
+    userA.login();
+    userA.logon();
+  </script>
+</body>
+
+
+</html>
